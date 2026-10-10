@@ -55,8 +55,8 @@
   {% for pub in cv.publications %}
   <div class="pub{% if pub.highlight %} pub-highlight{% endif %}">
     <div class="pub-title">{% if pub.url %}<a href="{{ pub.url }}">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}</div>
-    {% if pub.venue %}<div class="pub-venue"><em>{{ pub.venue }}</em>{% if pub.year %}, {{ pub.year }}{% endif %}{% if pub.note %} · <span class="award">{{ pub.note }}</span>{% endif %}</div>{% endif %}
     {% if pub.authors %}<div class="pub-authors">{{ pub.authors | me(p.name) }}</div>{% endif %}
+    {% if pub.venue %}<div class="pub-venue"><em>{{ pub.venue }}</em>{% if pub.year %}, {{ pub.year }}{% endif %}{% if pub.note %} · <span class="award">{{ pub.note }}</span>{% endif %}</div>{% endif %}
   </div>
   {% endfor %}
 </section>
