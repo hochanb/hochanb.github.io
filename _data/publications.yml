@@ -1,0 +1,31 @@
+# 최신 논문이 위로.
+# image: /assets/img/pubs/ 아래에 썸네일(이미지/GIF) 넣고 경로 지정. 없으면 썸네일 없이 글만 표시됨.
+# links: 제목에 걸릴 링크. Paper > arXiv > OpenReview > Website 순으로 첫 번째 것이 사용됨.
+# highlight: true 로 대표 논문 강조
+# authors의 본인 이름은 _config.yml의 author.name과 정확히 같아야 굵게 표시됨.
+- title: "Discovering Compositional Primitives Invariant to Context Shift"
+  authors: "Hochan Bang, Ganghun Lee, Min Whoo Lee, Minsu Lee, Byoung-Tak Zhang"
+  venue: "NeurIPS 2026 Workshop PTA: From Pretrained Representations to Acting Agents"
+  venue_short: NeurIPS-W
+  year: 2026
+  highlight: true
+  links: 
+    OpenReview: https://openreview.net/forum?id=HWfL3pIm1m
+  #   Paper: https://...
+
+- title: "Deep Neural Networks as Finite-Step Hopfield Dynamics"
+  authors: "Wooyul Jung, Hochan Bang, Hee Bin Yoo, Byoung-Tak Zhang"
+  venue: "ICLR 2026 Workshop on New Frontiers in Associative Memories"
+  venue_short: ICLR-W
+  year: 2026
+  links:
+    OpenReview: https://openreview.net/forum?id=bH0myuWvhJ
+    PDF: https://openreview.net/pdf?id=bH0myuWvhJ
+
+# - title: "Robust Generalization in Classification through Low-rank Recurrent Dynamic"
+#   authors: "Wooyul Jung, Hochan Bang, Byoung-Tak Zhang"
+#   venue: "Proceedings of the Korea Information Science Society (KIISE), pp. 803–805"
+#   venue_short: KIISE
+#   year: 2025
+#   links:
+#     Paper: https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE12577565

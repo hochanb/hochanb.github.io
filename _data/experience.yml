@@ -1,0 +1,26 @@
+# Education & Experience — 소분류(group)별로 묶어서 표시됩니다.
+# 소분류를 추가하려면 "- title: ..." 그룹을 하나 더 만드세요. org, url, note는 생략 가능 (url이 있으면 org에 링크).
+- title: Education
+  items:
+    - period: 2026.03. – 
+      role: M.S. Student in Seoul National University
+      org: Computer Science and Engineering
+      note: Advisor — Prof. Byoung-Tak Zhang
+    - period: 2019 - 2026
+      role: B.S. in Seoul National University
+      org: Computer Science and Engineering
+
+- title: Experience
+  items:
+    - period: 2026 Spring
+      role: Teaching Assistant
+      note: "\"Artificial Intelligence (4190.408)\", at CSE, SNU"
+    - period: 2025 Winter
+      role: Internship
+      org: as SW Engineer at Tommoro Robotics
+    - period: 2025 - 2026
+      role: Undergraduate Intern
+      org: Biointelligence Lab, SNU
+    - period: 2020 - 2022
+      role: Military Service
+      org: Republic of Korea Army

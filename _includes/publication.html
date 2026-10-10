@@ -1,0 +1,15 @@
+{% assign pub = include.pub %}
+{% assign main_link = pub.links.Paper | default: pub.links.arXiv | default: pub.links.OpenReview | default: pub.links.Website %}
+<div class="pub{% if pub.highlight %} pub-highlight{% endif %}">
+  <div class="pub-body">
+    <div class="pub-title">{% if main_link %}<a href="{{ main_link }}">{{ pub.title }}</a>{% else %}{{ pub.title }}{% endif %}</div>
+    <div class="pub-authors">{{ pub.authors | replace: site.author.name, '<strong>__ME__</strong>' | replace: '__ME__', site.author.name }}</div>
+    <div class="pub-venue"><em>{{ pub.venue }}</em>, {{ pub.year }}{% if pub.award %} · <span class="award">{{ pub.award }}</span>{% endif %}</div>
+    {% if pub.tldr %}<div class="pub-tldr">{{ pub.tldr }}</div>{% endif %}
+  </div>
+  {% if pub.image %}
+  <div class="pub-thumb">
+    <img src="{{ pub.image | relative_url }}" alt="{{ pub.title }}" loading="lazy">
+  </div>
+  {% endif %}
+</div>

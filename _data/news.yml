@@ -1,0 +1,11 @@
+# 최신 항목이 위로. date는 따옴표로 감싸기 ("2026.10" — 안 그러면 2026.1로 표시됨). text 안에서 마크다운 사용 가능.
+# text에 ": " (콜론+공백)이 들어가면 전체를 작은따옴표로 감싸기: text: '...'
+# - date: "2026.10"
+#   text: Launched my new homepage!
+# - date: "2026.09"
+#   text: Our paper **"Awesome Paper Title"** was accepted to [NeurIPS 2026](https://neurips.cc).
+# - date: "2026.03"
+#   text: Started my Ph.D. at Some University.
+
+- date: "2026.09"
+  text: 'Our paper **"Discovering Compositional Primitives Invariant to Context Shift"** was accepted to *NeurIPS 2026 Workshop PTA*.'

@@ -1,0 +1,12 @@
+# Honors & Awards — 소분류(group)별로 묶어서 표시됩니다.
+# 소분류를 추가하려면 "- title: Scholarships" 처럼 그룹을 하나 더 만드세요.
+# date는 따옴표로 감싸기 ("2026.10"). org, url, note는 생략 가능 (url이 있으면 org에 링크). note에서는 마크다운 사용 가능.
+- title: Awards
+  items:
+    - date: "2026.07"
+      title: Top prize (Ministry of Trade, Industry and Energy, Korea) 
+      org: Humanoid Challenge 2026
+      url: https://www.asiae.co.kr/en/article/2026070609471567230
+    - date: "2023.11"
+      title: 2nd prize
+      org: SNU x Hansot 2nd Food Service Industry Startup Competition

@@ -1,0 +1,9 @@
+_site/
+.jekyll-cache/
+.sass-cache/
+Gemfile.lock
+vendor/
+.DS_Store
+.venv/
+cv/private.yml
+cv/.cv.html

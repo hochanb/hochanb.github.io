@@ -1,0 +1,96 @@
+# CV 전용 데이터 — 사이트(_config.yml, _data/*.yml)와 독립적으로 관리합니다.
+# 빌드: .venv/bin/python cv/build_cv.py  ->  assets/cv.pdf
+# 전화번호처럼 공개 저장소에 올리면 안 되는 값은 cv/private.yml 에 (git에 안 올라감).
+# 값에 ": " (콜론+공백)이 들어가면 따옴표로 감싸기.
+# summary / note 에서는 **굵게**, *기울임*, [링크](url) 사용 가능.
+# 섹션을 통째로 빼려면 해당 키를 지우거나 주석 처리.
+
+profile:
+  name: Hochan Bang              # 논문 저자 목록에서 굵게 표시될 이름
+  # name_ko: 방호찬
+  title: M.S. Student
+  lab: Biointelligence Lab
+  lab_url: https://bi.snu.ac.kr/
+  affiliation: Department of Computer Science and Engineering, Seoul National University
+  affiliation_url: https://cse.snu.ac.kr/en
+  photo: assets/img/profile.jpg  # 프로젝트 루트 기준 경로
+  qr: https://hochanb.github.io  # 우상단 QR 코드가 연결될 주소 (지우면 QR 없음)
+  email: hochan0115@snu.ac.kr
+  # phone 은 cv/private.yml 에
+  links:                         # 표시 순서대로. 지원: github, linkedin, scholar, website
+    website: https://hochanb.github.io
+    linkedin: https://www.linkedin.com/in/hochan-bang/
+
+summary: >-
+  M.S. student at **Seoul National University**, advised by **Prof. Byoung-Tak Zhang**.
+  My research focuses on **Reinforcement Learning** and **Robotics**,
+  with a particular interest in learning effective skill representations and dexterous hand manipulation.
+
+publications:
+  - title: Discovering Compositional Primitives Invariant to Context Shift
+    authors: Hochan Bang, Ganghun Lee, Min Whoo Lee, Minsu Lee, Byoung-Tak Zhang
+    venue: "NeurIPS 2026 Workshop PTA: From Pretrained Representations to Acting Agents"
+    year: 2026
+    url: https://openreview.net/forum?id=HWfL3pIm1m
+    highlight: true
+  - title: Deep Neural Networks as Finite-Step Hopfield Dynamics
+    authors: Wooyul Jung, Hochan Bang, Hee Bin Yoo, Byoung-Tak Zhang
+    venue: ICLR 2026 Workshop on New Frontiers in Associative Memories
+    year: 2026
+    url: https://openreview.net/forum?id=bH0myuWvhJ
+
+# 날짜가 있는 섹션들 (사이트의 Education & Experience / Honors & Awards 와 같은 형식)
+# 각 섹션은 groups(소제목) 아래 items. org, url, note 생략 가능.
+timeline:
+  - title: Education & Experience
+    groups:
+      - title: Education
+        items:
+          - date: 2026.03 –
+            role: M.S. Student, Computer Science and Engineering
+            org: Seoul National University
+            note: Advisor — Prof. Byoung-Tak Zhang
+          - date: 2019.03 – 2026.02
+            role: B.S., Computer Science and Engineering
+            org: Seoul National University (3.35/4.3 GPA)
+      - title: Experience
+        items:
+          - date: 2026 Spring
+            role: Teaching Assistant
+            org: '"Artificial Intelligence (4190.408)", at CSE, SNU'
+          - date: 2025 Winter
+            role: SW Engineer Intern
+            org: Tommoro Robotics
+          - date: 2025.04 – 2026.02
+            role: Undergraduate Research Student
+            org: Biointelligence Lab, SNU
+          - date: 2020.11 – 2022.05
+            role: Military Service
+            org: Republic of Korea Army
+  - title: Honors & Awards
+    groups:
+      - title: Awards
+        items:
+          - date: 2026.07
+            role: Top Prize (Ministry of Trade, Industry and Energy, Korea)
+            org: Humanoid Challenge 2026
+            url: https://www.asiae.co.kr/en/article/2026070609471567230
+          - date: 2023.11
+            role: 2nd Prize
+            org: SNU x Hansot 2nd Food Service Industry Startup Competition
+
+projects:
+  # - title: Ongoing
+  #   items:
+  #     - '"MicroVLA"'
+  #     - Distributionally robust multi-agent RL
+  # - title: Past
+  #   items:
+  #     - Improving robustness to out-of-distribution observations for Diffusion-Transformer-based VLA
+  #     - Imitation learning pipeline for a dexterous robot hand (with Hyundai)
+
+skills:
+  - label: Languages
+    items: [Python, C#, C++, Java, JavaScript,]
+  - label: Tools
+    items: [Unity, Mujoco, Isaac Lab, ROS, OpenGL]

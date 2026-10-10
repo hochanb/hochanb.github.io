@@ -1,0 +1,46 @@
+# ---------------------------------------------------------------
+# 사이트 기본 정보 — 여기만 수정하면 대부분 반영됩니다.
+# ---------------------------------------------------------------
+title: Hochan Bang
+description: Hochan Bang's personal website
+url: "https://hochanb.github.io" 
+baseurl: ""
+
+author:
+  name: Hochan Bang
+  name_ko: 방호찬
+  title: MS Student
+  affiliation: Department of Computer Science and Engineering, Seoul National University
+  affiliation_url: https://cse.snu.ac.kr/en
+  lab: Biointelligence Lab
+  lab_url: https://bi.snu.ac.kr/
+  email: hochan0115@snu.ac.kr
+  photo: /assets/img/profile.jpg
+  cv: /assets/cv.pdf
+  scholar: https://scholar.google.com/citations?user=vuARcy4AAAAJ
+  github: hochanb
+  linkedin: https://linkedin.com/in/hochan-bang   # 없으면 주석 처리 (빈 문자열 "" 은 X)
+  # twitter: handle
+
+# 상단 메뉴
+nav:
+  - title: About
+    url: /
+  - title: Publications
+    url: /#publications
+  - title: Blog
+    url: /blog/
+
+news_limit: 4          # 메인 페이지에 보일 뉴스 개수
+
+markdown: kramdown
+permalink: /blog/:year/:month/:title/
+timezone: Asia/Seoul
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - cv          # CV 빌드 소스 (private.yml 포함) — 사이트에 공개되지 않게
+  - .venv

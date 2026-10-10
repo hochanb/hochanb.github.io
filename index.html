@@ -1,0 +1,73 @@
+---
+layout: default
+---
+{% assign a = site.author %}
+<section class="profile">
+  <img class="profile-photo" src="{{ a.photo | relative_url }}" alt="{{ a.name }}">
+  <div class="profile-text">
+    <h1>{{ a.name }}{% if a.name_ko %} <span class="name-ko">{{ a.name_ko }}</span>{% endif %}</h1>
+    <p class="profile-affil">
+      {{ a.title }}<br>
+      {% if a.lab %}<a href="{{ a.lab_url }}">{{ a.lab }}</a><br>{% endif %}<a href="{{ a.affiliation_url }}">{{ a.affiliation }}</a>
+    </p>
+    {% include links.html %}
+  </div>
+</section>
+
+<section class="bio">
+  {% capture bio %}{% include bio.md %}{% endcapture %}
+  {{ bio | markdownify }}
+</section>
+
+{% if site.data.news.size > 0 %}
+<section id="news">
+  <h2>News</h2>
+  <ul class="news">
+    {% for item in site.data.news limit: site.news_limit %}
+      <li><span class="news-date">{{ item.date }}</span><span>{{ item.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<section id="publications">
+  <h2>Publications</h2>
+  <p class="note">* equal contribution</p>
+  {% for pub in site.data.publications %}
+    {% include publication.html pub=pub %}
+  {% endfor %}
+</section>
+
+{% if site.data.experience %}
+<section id="experience">
+  <h2>Education &amp; Experience</h2>
+  {% for group in site.data.experience %}
+    <h3>{{ group.title }}</h3>
+    <ul class="timeline">
+      {% for e in group.items %}
+        <li>
+          <span class="tl-date">{{ e.period }}</span>
+          <span><strong>{{ e.role }}</strong>{% if e.org %}<span class="tl-org">, {% if e.url %}<a href="{{ e.url }}">{{ e.org }}</a>{% else %}{{ e.org }}{% endif %}</span>{% endif %}{% if e.note %}<br><span class="muted">{{ e.note }}</span>{% endif %}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+</section>
+{% endif %}
+
+{% if site.data.honors %}
+<section id="honors">
+  <h2>Honors &amp; Awards</h2>
+  {% for group in site.data.honors %}
+    <h3>{{ group.title }}</h3>
+    <ul class="timeline">
+      {% for h in group.items %}
+        <li>
+          <span class="tl-date">{{ h.date }}</span>
+          <span><strong>{{ h.title }}</strong>{% if h.org %}<span class="tl-org">, {% if h.url %}<a href="{{ h.url }}">{{ h.org }}</a>{% else %}{{ h.org }}{% endif %}</span>{% endif %}{% if h.note %}<br><span class="muted">{{ h.note | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span>{% endif %}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+</section>
+{% endif %}
