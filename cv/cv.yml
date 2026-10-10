@@ -47,12 +47,12 @@ timeline:
       - title: Education
         items:
           - date: 2026.03 –
-            role: M.S. Student, Computer Science and Engineering
-            org: Seoul National University
+            role: M.S. Student, Seoul National University
+            org: Computer Science and Engineering
             note: Advisor — Prof. Byoung-Tak Zhang
           - date: 2019.03 – 2026.02
-            role: B.S., Computer Science and Engineering
-            org: Seoul National University (3.35/4.3 GPA)
+            role: B.S., Seoul National University
+            org: Computer Science and Engineering (3.35/4.3 GPA)
       - title: Experience
         items:
           - date: 2026 Spring
@@ -91,6 +91,6 @@ projects:
 
 skills:
   - label: Languages
-    items: [Python, C#, C++, Java, JavaScript,]
+    items: [Python, C#, C++]
   - label: Tools
     items: [Unity, Mujoco, Isaac Lab, ROS, OpenGL]
