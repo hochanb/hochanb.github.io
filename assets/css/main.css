@@ -25,6 +25,7 @@
 */
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }  /* display:flex 등이 hidden 속성을 덮어쓰지 않게 */
 html { font-size: 10pt; scroll-behavior: smooth; scroll-padding-top: 4rem; }  /* 기본 글자 크기 — rem 단위가 모두 이 값 기준 */
 body {
   margin: 0;
@@ -87,6 +88,7 @@ section > h2 {
 .tl-org { color: #57606a; font-size: 0.875rem; }
 section > h3 { font-size: 1.05rem; margin: 1.25rem 0 .5rem; color: #2e3a48; }
 section > h2 + h3 { margin-top: 0; }
+.h3-note { font-size: .8rem; font-weight: 400; color: var(--muted); margin-left: .4rem; }
 
 /* publications */
 .pub {
@@ -111,6 +113,25 @@ section > h2 + h3 { margin-top: 0; }
 
 /* blog */
 .page-title { margin-top: 0; }
+.tag-filter { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 .5rem; }
+.tag-filter .tag {
+  font: inherit; font-size: .85rem; cursor: pointer; color: var(--muted); background: none;
+  padding: .2rem .7rem; border: 1px solid var(--border); border-radius: 999px;
+}
+.tag-filter .tag span { opacity: .6; margin-left: .15rem; }
+.tag-filter .tag:hover { color: var(--fg); border-color: var(--muted); }
+.tag-filter .tag.active { color: #fff; background: var(--accent); border-color: var(--accent); }
+.tag-link { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+.tag-link:hover { color: var(--accent); text-decoration: underline; }
+.tag-empty { padding: 1rem 0; }
+.post-list .post-item { gap: 1.5rem; align-items: flex-start; padding: 1.1rem 0; border-bottom: 1px solid var(--border); }
+.post-item-body { flex: 1; min-width: 0; }
+.post-item-title { font-weight: 600; font-size: 1.15rem; color: var(--fg); }
+.post-item-title:hover { color: var(--accent); text-decoration: none; }
+.post-item-meta { color: var(--muted); font-size: .85rem; margin: .15rem 0 .4rem; }
+.post-item-excerpt { margin: 0; color: #444c56; font-size: .95rem; }
+.post-item-thumb { flex: 0 0 180px; }
+.post-item-thumb img { display: block; width: 180px; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); }
 .post-header h1 { margin-bottom: .2rem; }
 .post-header .meta { color: var(--muted); margin-top: 0; }
 .post-content pre {
@@ -122,6 +143,25 @@ section > h2 + h3 { margin-top: 0; }
   margin: 1rem 0; padding: .1rem 1rem; color: var(--muted);
   border-left: 3px solid var(--border);
 }
+/* 글 속 영상·사진: 비율 유지, 최대 너비 본문의 2/3 · 최대 높이 480px, 가운데 정렬 */
+.post-content video, .post-content img { display: block; width: auto; height: auto; max-width: 66.667%; max-height: 480px; margin: 1rem auto; border-radius: 6px; }
+.post-content video { background: #000; }
+/* 사진·영상 2열 격자: <div class="media-grid"> ... </div> (같은 비율끼리 쓰면 칸이 맞음) */
+.post-content .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin: 1rem 0; }
+.post-content .media-grid > * { width: 100%; max-width: none; max-height: none; margin: 0; }
+/* front matter `wide_media: true` 인 글: 사진·영상·임베드를 본문 전체 너비로 */
+.post-content.wide-media img, .post-content.wide-media video, .post-content.wide-media iframe { width: 100%; max-width: 100%; max-height: none; }
+/* 캡션 달린 사진: <figure><img ...><figcaption>캡션</figcaption></figure> */
+.post-content figure { margin: 1rem 0; }
+.post-content figure > img, .post-content figure > video { margin: 0 auto; }
+.post-content figcaption { margin-top: .4rem; text-align: center; font-size: .85rem; color: var(--muted); }
+/* YouTube 등 임베드: 16:9, 가로 영상과 같은 최대 너비 */
+.post-content iframe { display: block; width: 66.667%; aspect-ratio: 16 / 9; height: auto; margin: 1rem auto; border: 0; border-radius: 6px; }
+/* 세로 영상·사진을 한 줄에 나란히: <div class="media-row"> ... </div> (같은 비율끼리 쓰면 높이가 맞음) */
+.post-content .media-row { display: flex; align-items: flex-start; gap: .6rem; margin: 1rem 0; }
+.post-content .media-row > * { flex: 1 1 0; min-width: 0; max-width: none; max-height: none; margin: 0; }
+/* 영상은 메타데이터 로딩 전에도 칸 크기가 같도록 비율 고정: <div class="media-row" style="--ar: 9 / 16"> */
+.post-content .media-row > video { aspect-ratio: var(--ar, auto); object-fit: cover; }
 .back { margin-top: 3rem; }
 
 .site-footer {
@@ -136,4 +176,7 @@ section > h2 + h3 { margin-top: 0; }
   .pub-thumb, .pub-thumb img { width: 100%; flex-basis: auto; }
   .news li, .timeline li { flex-direction: column; gap: 0; }
   .site-nav nav a { margin-left: .9rem; }
+  .post-content iframe { width: 100%; }
+  .post-item-thumb { flex-basis: 96px; }
+  .post-item-thumb img { width: 96px; }
 }

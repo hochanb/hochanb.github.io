@@ -7,7 +7,7 @@
 
 profile:
   name: Hochan Bang              # 논문 저자 목록에서 굵게 표시될 이름
-  # name_ko: 방호찬
+  name_ko: 방호찬
   title: M.S. Student
   lab: Biointelligence Lab
   lab_url: https://bi.snu.ac.kr/
@@ -25,6 +25,8 @@ summary: >-
   M.S. student at **Seoul National University**, advised by **Prof. Byoung-Tak Zhang**.
   My research focuses on **Reinforcement Learning** and **Robotics**,
   with a particular interest in learning effective skill representations and dexterous hand manipulation.
+  I aim to develop algorithms that enable embodied agents to master their own bodies 
+  and reveal the emergent intelligence that arises through interaction with their environment.
 
 publications:
   - title: Discovering Compositional Primitives Invariant to Context Shift
@@ -39,8 +41,9 @@ publications:
     year: 2026
     url: https://openreview.net/forum?id=bH0myuWvhJ
 
-# 날짜가 있는 섹션들 (사이트의 Education & Experience / Honors & Awards 와 같은 형식)
-# 각 섹션은 groups(소제목) 아래 items. org, url, note 생략 가능.
+# 섹션(title)과 소제목(groups)이 이 순서대로 CV에 그려집니다.
+# 소제목은 items(날짜 항목; org, url, note 생략 가능)를 직접 쓰거나,
+# `from: projects` / `from: skills` 로 아래 projects / skills 데이터를 그 자리에 넣습니다.
 timeline:
   - title: Education & Experience
     groups:
@@ -67,7 +70,9 @@ timeline:
           - date: 2020.11 – 2022.05
             role: Military Service
             org: Republic of Korea Army
-  - title: Honors & Awards
+      - title: Research Projects
+        from: projects
+  - title: Additional Information
     groups:
       - title: Awards
         items:
@@ -78,19 +83,23 @@ timeline:
           - date: 2023.11
             role: 2nd Prize
             org: SNU x Hansot 2nd Food Service Industry Startup Competition
+      - title: Skills
+        from: skills
 
+# 내가 주도/책임인 프로젝트는 앞에 * 를 붙이고 따옴표로 감싸기:  - "*MicroVLA"
 projects:
-  # - title: Ongoing
-  #   items:
-  #     - '"MicroVLA"'
-  #     - Distributionally robust multi-agent RL
-  # - title: Past
-  #   items:
-  #     - Improving robustness to out-of-distribution observations for Diffusion-Transformer-based VLA
-  #     - Imitation learning pipeline for a dexterous robot hand (with Hyundai)
+  - title: Ongoing
+    items:
+      - MicroVLA (VLA with 12M parameters)
+      - Distributionally robust multi-agent RL
+  - title: Past
+    items:
+      - "*Vision-based teleoperation for dexterous manipulation (Allegro+UR5)"
+      - Improving robustness to out-of-distribution observations for Diffusion-Transformer-based VLA
+      - Imitation learning pipeline for a dexterous robot hand (with Hyundai)
 
 skills:
   - label: Languages
-    items: [Python, C#, C++]
+    items: [Korean (native), "English (intermediate [TEPS 438])"]
   - label: Tools
-    items: [Unity, Mujoco, Isaac Lab, ROS, OpenGL]
+    items: [Python, C#, C++, Unity, Mujoco, Isaac Lab, ROS, OpenGL]

@@ -6,8 +6,22 @@ layout: default
     <h1>{{ page.title }}</h1>
     <p class="meta">{{ page.date | date: "%B %-d, %Y" }}{% if page.tags.size > 0 %} · {{ page.tags | join: ", " }}{% endif %}</p>
   </header>
-  <div class="post-content">
+  <div class="post-content{% if page.wide_media %} wide-media{% endif %}">
     {{ content }}
   </div>
   <p class="back"><a href="{{ '/blog/' | relative_url }}">← All posts</a></p>
 </article>
+<script>
+  // .media-row: 사진·영상의 실제 가로/세로 비율을 flex-grow로 넣어서, 비율이 달라도 한 줄의 높이가 같아지게 함
+  document.querySelectorAll('.post-content .media-row').forEach(function (row) {
+    var items = Array.prototype.filter.call(row.children, function (el) { return el.tagName === 'IMG' || el.tagName === 'VIDEO'; });
+    function fit() {
+      items.forEach(function (el) {
+        var w = el.naturalWidth || el.videoWidth, h = el.naturalHeight || el.videoHeight;
+        if (w && h) el.style.flexGrow = w / h;
+      });
+    }
+    items.forEach(function (el) { el.addEventListener(el.tagName === 'IMG' ? 'load' : 'loadedmetadata', fit); });
+    fit();
+  });
+</script>

@@ -44,3 +44,6 @@ exclude:
   - vendor
   - cv          # CV 빌드 소스 (private.yml 포함) — 사이트에 공개되지 않게
   - .venv
+  - tools
+  - scripts
+  - assets/post/*/raw  # 글별 원본 영상 (압축본만 배포)

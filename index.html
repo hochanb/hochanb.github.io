@@ -42,6 +42,20 @@ layout: default
 <section id="experience">
   <h2>Education &amp; Experience</h2>
   {% for group in site.data.experience %}
+    {% if group.from == "projects" %}
+      {% assign led = false %}
+      {% for pg in site.data.projects %}{% for it in pg.items %}{% assign c = it | slice: 0 %}{% if c == "*" %}{% assign led = true %}{% endif %}{% endfor %}{% endfor %}
+      <h3>{{ group.title }}{% if led %} <span class="h3-note">* Led by me</span>{% endif %}</h3>
+      <ul class="timeline">
+        {% for pg in site.data.projects %}
+          <li>
+            <span class="tl-date">{{ pg.title }}</span>
+            <span>{% for it in pg.items %}{% unless forloop.first %} · {% endunless %}{% assign c = it | slice: 0 %}{% if c == "*" %}<strong>{{ it | remove_first: "*" | strip | markdownify | remove: '<p>' | remove: '</p>' | strip }}</strong>*{% else %}{{ it | markdownify | remove: '<p>' | remove: '</p>' | strip }}{% endif %}{% endfor %}</span>
+          </li>
+        {% endfor %}
+      </ul>
+      {% continue %}
+    {% endif %}
     <h3>{{ group.title }}</h3>
     <ul class="timeline">
       {% for e in group.items %}

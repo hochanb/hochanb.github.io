@@ -1,0 +1,1 @@
+imageio-ffmpeg>=0.5   # bundled ffmpeg for tools/compress_video.py

@@ -1,0 +1,13 @@
+# Research Projects — 홈페이지 Education & Experience 섹션의 소제목으로 표시됩니다
+# (_data/experience.yml 의 `from: projects` 자리).
+# 내가 주도/책임인 프로젝트는 앞에 * 를 붙이고 따옴표로 감싸기:  - "*MicroVLA"
+# 항목 안에서 마크다운 링크 사용 가능: "[이름](/blog/...)"
+- title: Ongoing
+  items:
+    - MicroVLA (VLA with 12M parameters)
+    - Distributionally robust multi-agent RL
+- title: Past
+  items:
+    - "*Vision-based teleoperation for dexterous manipulation (Allegro+UR5)"
+    - Improving robustness to out-of-distribution observations for Diffusion-Transformer-based VLA
+    - Imitation learning pipeline for a dexterous robot hand (with Hyundai)

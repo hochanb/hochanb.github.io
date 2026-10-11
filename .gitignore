@@ -7,3 +7,4 @@ vendor/
 .venv/
 cv/private.yml
 cv/.cv.html
+assets/post/*/raw/

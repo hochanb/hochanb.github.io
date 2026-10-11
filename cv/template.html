@@ -62,44 +62,46 @@
 </section>
 {% endif %}
 
+{# 섹션·소제목은 cv.yml의 timeline 순서대로. 소제목에 `from: projects` / `from: skills` 를 쓰면 그 데이터를 그 자리에 그림 #}
 {% for sec in cv.timeline or [] %}
 <section>
   <h2>{{ sec.title }}</h2>
   {% for g in sec.groups %}
-  {% if g.title %}<h3>{{ g.title }}</h3>{% endif %}
-  <ul class="timeline">
-    {% for e in g["items"] %}
-    <li>
-      <span class="tl-date">{{ e.date }}</span>
-      <span><strong>{{ e.role }}</strong>{% if e.org %}<span class="tl-org">, {% if e.url %}<a href="{{ e.url }}">{{ e.org }}</a>{% else %}{{ e.org }}{% endif %}</span>{% endif %}{% if e.note %}<br><span class="muted">{{ e.note | md }}</span>{% endif %}</span>
-    </li>
-    {% endfor %}
-  </ul>
+  {% if g["from"] == "projects" and cv.projects %}
+    {% set ns = namespace(led=false) %}
+    {% for pg in cv.projects %}{% for it in pg["items"] %}{% if it.startswith("*") %}{% set ns.led = true %}{% endif %}{% endfor %}{% endfor %}
+    <h3>{{ g.title or "Research Projects" }}{% if ns.led %} <span class="h3-note">* Led by me</span>{% endif %}</h3>
+    <ul class="timeline">
+      {% for pg in cv.projects %}
+      <li><span class="tl-date">{{ pg.title }}</span><span>
+        {%- for it in pg["items"] -%}
+          {%- if not loop.first %} · {% endif -%}
+          {%- if it.startswith("*") -%}<strong>{{ it[1:] | trim }}</strong>*{%- else -%}{{ it }}{%- endif -%}
+        {%- endfor -%}
+      </span></li>
+      {% endfor %}
+    </ul>
+  {% elif g["from"] == "skills" and cv.skills %}
+    <h3>{{ g.title or "Skills" }}</h3>
+    <ul class="timeline">
+      {% for sk in cv.skills %}
+      <li><span class="tl-date">{{ sk.label }}</span><span>{{ sk["items"] | join(" · ") }}</span></li>
+      {% endfor %}
+    </ul>
+  {% elif g["items"] %}
+    {% if g.title %}<h3>{{ g.title }}</h3>{% endif %}
+    <ul class="timeline">
+      {% for e in g["items"] %}
+      <li>
+        <span class="tl-date">{{ e.date }}</span>
+        <span><strong>{{ e.role }}</strong>{% if e.org %}<span class="tl-org">, {% if e.url %}<a href="{{ e.url }}">{{ e.org }}</a>{% else %}{{ e.org }}{% endif %}</span>{% endif %}{% if e.note %}<br><span class="muted">{{ e.note | md }}</span>{% endif %}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
   {% endfor %}
 </section>
 {% endfor %}
-
-{% if cv.projects or cv.skills %}
-<section>
-  <h2>Additional Information</h2>
-  {% if cv.projects %}
-  <h3>Research Projects</h3>
-  <ul class="timeline">
-    {% for g in cv.projects %}
-    <li><span class="tl-date">{{ g.title }}</span><span>{{ g["items"] | join(" · ") }}</span></li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-  {% if cv.skills %}
-  <h3>Skills</h3>
-  <ul class="timeline">
-    {% for s in cv.skills %}
-    <li><span class="tl-date">{{ s.label }}</span><span>{{ s["items"] | join(" · ") }}</span></li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-</section>
-{% endif %}
 
 </body>
 </html>

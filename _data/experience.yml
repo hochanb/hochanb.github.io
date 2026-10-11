@@ -24,3 +24,7 @@
     - period: 2020 - 2022
       role: Military Service
       org: Republic of Korea Army
+
+# 내용은 _data/projects.yml
+- title: Research Projects
+  from: projects

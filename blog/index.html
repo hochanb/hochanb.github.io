@@ -4,11 +4,72 @@ title: Blog
 ---
 <h1 class="page-title">Blog</h1>
 {% if site.posts.size == 0 %}<p class="muted">No posts yet.</p>{% endif %}
+{% assign tags = site.tags | sort %}
+{% if tags.size > 0 %}
+<div class="tag-filter" role="group" aria-label="Filter by tag">
+  <button type="button" class="tag active" data-tag="">All <span>{{ site.posts.size }}</span></button>
+  {% for t in tags %}<button type="button" class="tag" data-tag="{{ t[0] }}">{{ t[0] }} <span>{{ t[1].size }}</span></button>{% endfor %}
+</div>
+{% endif %}
 <ul class="post-list">
   {% for post in site.posts %}
-    <li>
-      <span class="news-date">{{ post.date | date: "%Y.%m.%d" }}</span>
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    {% comment %} 썸네일: front matter `thumbnail` > 본문 첫 이미지 > 본문 첫 영상의 .jpg 포스터 > 첫 YouTube 임베드 썸네일 {% endcomment %}
+    {% assign thumb = nil %}
+    {% if post.thumbnail %}
+      {% assign thumb = post.thumbnail | relative_url %}
+    {% else %}
+      {% assign parts = post.content | split: '<img src="' %}
+      {% if parts.size > 1 %}
+        {% assign thumb = parts[1] | split: '"' | first %}
+      {% else %}
+        {% assign parts = post.content | split: 'poster="' %}
+        {% if parts.size > 1 %}
+          {% assign thumb = parts[1] | split: '"' | first %}
+        {% else %}
+          {% assign parts = post.content | split: 'youtube-nocookie.com/embed/' %}
+          {% if parts.size > 1 %}
+            {% assign yt = parts[1] | split: '"' | first | split: '?' | first %}
+            {% assign thumb = 'https://img.youtube.com/vi/' | append: yt | append: '/mqdefault.jpg' %}{% comment %} mqdefault: 16:9, 검은 띠 없음 {% endcomment %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+    <li class="post-item" data-tags="|{{ post.tags | join: '|' }}|">
+      <div class="post-item-body">
+        <a class="post-item-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <div class="post-item-meta">{{ post.date | date: "%Y.%m.%d" }}{% for t in post.tags %}{% if forloop.first %} · {% else %}, {% endif %}<button type="button" class="tag-link" data-tag="{{ t }}">{{ t }}</button>{% endfor %}</div>
+        <p class="post-item-excerpt">{{ post.description | default: post.excerpt | strip_html | strip | truncate: 180 }}</p>
+      </div>
+      {% if thumb %}
+      <a class="post-item-thumb" href="{{ post.url | relative_url }}"><img src="{{ thumb }}" alt="" loading="lazy"></a>
+      {% endif %}
     </li>
   {% endfor %}
 </ul>
+<p class="muted tag-empty" hidden>No posts with this tag.</p>
+
+<script>
+  // 태그 필터: ?tag=Event 형태로 주소에 남겨서 공유·새로고침해도 유지
+  (function () {
+    var buttons = document.querySelectorAll('.tag-filter .tag');
+    var items = document.querySelectorAll('.post-list .post-item');
+    var empty = document.querySelector('.tag-empty');
+    function apply(tag) {
+      var shown = 0;
+      items.forEach(function (li) {
+        var on = !tag || li.dataset.tags.indexOf('|' + tag + '|') !== -1;
+        li.hidden = !on; if (on) shown++;
+      });
+      buttons.forEach(function (b) { b.classList.toggle('active', b.dataset.tag === (tag || '')); });
+      if (empty) empty.hidden = shown > 0;
+      var url = new URL(location.href);
+      if (tag) url.searchParams.set('tag', tag); else url.searchParams.delete('tag');
+      history.replaceState(null, '', url);
+    }
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('.tag-filter .tag, .post-item .tag-link');
+      if (b) apply(b.dataset.tag);
+    });
+    apply(new URL(location.href).searchParams.get('tag') || '');
+  })();
+</script>
